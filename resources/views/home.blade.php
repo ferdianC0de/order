@@ -29,49 +29,55 @@
                 <div class="card-header">Riwayat Terakhir Pesanan</div>
 
                 <div class="card-body">
-                    <div class="form-group row">
-                        <label for="name" class="col-md-3 col-form-label text-md-left"> Nama Pemesan </label>
-
-                        <div class="col-md-7 col-form-label">
-                            : {{$order->name}}
+                    @if (!$order)
+                        <div class="form-group row">
+                            <label for="name" class="col-md-12 col-form-label text-md-center">----- Tidak ada -----</label>
                         </div>
+                    @else
+                        <div class="form-group row">
+                            <label for="name" class="col-md-3 col-form-label text-md-left"> Nama Pemesan </label>
 
-                        <label for="name" class="col-md-3 col-form-label text-md-left"> Nomor Identitas </label>
+                            <div class="col-md-7 col-form-label">
+                                : {{$order->name}}
+                            </div>
 
-                        <div class="col-md-7 col-form-label">
-                            : {{$order->identity}}
+                            <label for="name" class="col-md-3 col-form-label text-md-left"> Nomor Identitas </label>
+
+                            <div class="col-md-7 col-form-label">
+                                : {{$order->identity}}
+                            </div>
+
+                            <label for="name" class="col-md-3 col-form-label text-md-left"> Jenis Kelamin </label>
+
+                            <div class="col-md-7 col-form-label">
+                                : {{$order->gender == 'male' ? 'Laki - laki' : 'Perempuan'}}
+                            </div>
+
+                            <label for="name" class="col-md-3 col-form-label text-md-left"> Tipe Kamar </label>
+
+                            <div class="col-md-7 col-form-label">
+                                : {{ ucfirst($order->typeroom) }}
+                            </div>
+
+                            <label for="name" class="col-md-3 col-form-label text-md-left"> Durasi Penginapan </label>
+
+                            <div class="col-md-7 col-form-label">
+                                : {{ $order->duration }} Hari
+                            </div>
+
+                            <label for="name" class="col-md-3 col-form-label text-md-left"> Discount </label>
+
+                            <div class="col-md-7 col-form-label">
+                                : {{ $order->disc}}%
+                            </div>
+
+                            <label for="name" class="col-md-3 col-form-label text-md-left"> Total Bayar </label>
+
+                            <div class="col-md-7 col-form-label">
+                                : {{$order->totalprice}}
+                            </div>
                         </div>
-
-                        <label for="name" class="col-md-3 col-form-label text-md-left"> Jenis Kelamin </label>
-
-                        <div class="col-md-7 col-form-label">
-                            : {{$order->gender == 'male' ? 'Laki - laki' : 'Perempuan'}}
-                        </div>
-
-                        <label for="name" class="col-md-3 col-form-label text-md-left"> Tipe Kamar </label>
-
-                        <div class="col-md-7 col-form-label">
-                            : {{ ucfirst($order->typeroom) }}
-                        </div>
-
-                        <label for="name" class="col-md-3 col-form-label text-md-left"> Durasi Penginapan </label>
-
-                        <div class="col-md-7 col-form-label">
-                            : {{ $order->duration }} Hari
-                        </div>
-
-                        <label for="name" class="col-md-3 col-form-label text-md-left"> Discount </label>
-
-                        <div class="col-md-7 col-form-label">
-                            : {{ $order->disc}}%
-                        </div>
-
-                        <label for="name" class="col-md-3 col-form-label text-md-left"> Total Bayar </label>
-
-                        <div class="col-md-7 col-form-label">
-                            : {{$order->totalprice}}
-                        </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -86,7 +92,7 @@
         data: {
             labels: {!! json_encode($label) !!},
             datasets: [{
-                label: '# of Votes',
+                label: 'Pemesan',
                 data: {!! json_encode($data) !!},
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
